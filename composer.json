@@ -1,0 +1,21 @@
+{
+    "name": "oh86/unicom_cryptor",
+    "description": "联通密码池加解密",
+    "keywords": ["cryptor", "sm3", "sm4"],
+    "license": "MIT",
+    "require": {
+        "php": "^7.3|^8.0",
+        "guzzlehttp/guzzle": ">=6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Oh86\\UnicomCryptor\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "chenguangjun",
+            "email": "chen.gj@qq.com"
+        }
+    ]
+}
