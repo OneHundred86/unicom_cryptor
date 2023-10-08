@@ -14,6 +14,16 @@ class ClientV1
     private string $accessKey;
     private string $secretKey;
 
+    /**
+     * @param array{host: string, access_key: string, secret_key: string} $config
+     */
+    public function __construct(array $config)
+    {
+        $this->host = $config["host"];
+        $this->accessKey = $config["access_key"];
+        $this->secretKey = $config["secret_key"];
+    }
+
     public function createHttpClient(): Client
     {
         return HttpClientUtil::createClientWithSignature($this->accessKey, $this->secretKey);
