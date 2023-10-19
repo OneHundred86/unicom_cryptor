@@ -76,7 +76,7 @@ class ClientV1
 
     /**
      * 对称加密
-     * @param string $inData 输入数据
+     * @param string $inData            输入数据，Base64 编码
      * @param array{algID: int, keyID: string, encryptedSessionKey: string} $sessionKeyContext 会话密钥
      * @param string|null $iv           初始向量，长度须为 16 字节，Base64 编码。CBC加密允许iv为null。
      * @param int $algId
@@ -100,7 +100,7 @@ class ClientV1
     }
 
     /**
-     * @param string $inData
+     * @param string $inData            Base64 编码
      * @param array $sessionKeyContext
      * @param string|null $iv           初始向量，长度须为 16 字节，Base64 编码。CBC加密允许iv为null。
      * @param int $algId
@@ -126,7 +126,7 @@ class ClientV1
 
     /**
      * 计算 HMAC
-     * @param string $inData
+     * @param string $inData            Base64 编码
      * @param array $sessionKeyContext
      * @param int $algId
      * @return string                   Base64 编码
