@@ -78,18 +78,18 @@ class ClientV1
      * 对称加密
      * @param string $inData 输入数据
      * @param array{algID: int, keyID: string, encryptedSessionKey: string} $sessionKeyContext 会话密钥
-     * @param string|null $iv           初始向量，长度须为 16 字节，Base64 编码。如果为null，则使用默认向量
+     * @param string|null $iv           初始向量，长度须为 16 字节，Base64 编码。CBC加密允许iv为null。
      * @param int $algId
      * @return string                   返回密文数据，Base64 编码
      * @throws CryptorException
      */
-    public function encrypt(string $inData, array $sessionKeyContext, string $iv = null, int $algId = Constant::SGD_SM4_ECB): string
+    public function encrypt(string $inData, array $sessionKeyContext, ?string $iv = null, int $algId = Constant::SGD_SM4_ECB): string
     {
-        $url = sprintf("http://%s/api-console/crypt/v1/encrypt", $this->host);
+        $url = sprintf("http://%s/api-console/crypt/v1/encrypt-with-padding", $this->host);
         $params = [
             "sessionKeyContext" => $sessionKeyContext,
             "algId" => $algId,
-            "iv" => $iv ?? Constant::DEFAULT_IV,
+            "iv" => $iv,
             "inData" => $inData,
         ];
 
@@ -102,19 +102,19 @@ class ClientV1
     /**
      * @param string $inData
      * @param array $sessionKeyContext
-     * @param string|null $iv           初始向量，长度须为 16 字节，Base64 编码。如果为null，则使用默认向量
+     * @param string|null $iv           初始向量，长度须为 16 字节，Base64 编码。CBC加密允许iv为null。
      * @param int $algId
      * @return string                   返回明文数据，Base64 编码
      * @throws CryptorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function decrypt(string $inData, array $sessionKeyContext, string $iv = null, int $algId = Constant::SGD_SM4_ECB): string
+    public function decrypt(string $inData, array $sessionKeyContext, ?string $iv = null, int $algId = Constant::SGD_SM4_ECB): string
     {
-        $url = sprintf("http://%s/api-console/crypt/v1/decrypt", $this->host);
+        $url = sprintf("http://%s/api-console/crypt/v1/decrypt-with-padding", $this->host);
         $params = [
             "sessionKeyContext" => $sessionKeyContext,
             "algId" => $algId,
-            "iv" => $iv ?? Constant::DEFAULT_IV,
+            "iv" => $iv,
             "inData" => $inData,
         ];
 
