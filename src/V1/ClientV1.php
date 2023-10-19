@@ -36,7 +36,7 @@ class ClientV1
      */
     public function generateKeyWithKek(string $keyIndex, int $algId = Constant::SGD_SM4_ECB): array
     {
-        $url = sprintf("http://%s/api-console/key/v1/generate-key-with-kek", $this->host);
+        $url = sprintf("%s/api-console/key/v1/generate-key-with-kek", $this->host);
         $params = [
             "bits" => 128,
             "key" => $keyIndex,
@@ -85,7 +85,7 @@ class ClientV1
      */
     public function encrypt(string $inData, array $sessionKeyContext, ?string $iv = null, int $algId = Constant::SGD_SM4_ECB): string
     {
-        $url = sprintf("http://%s/api-console/crypt/v1/encrypt-with-padding", $this->host);
+        $url = sprintf("%s/api-console/crypt/v1/encrypt-with-padding", $this->host);
         $params = [
             "sessionKeyContext" => $sessionKeyContext,
             "algId" => $algId,
@@ -110,7 +110,7 @@ class ClientV1
      */
     public function decrypt(string $inData, array $sessionKeyContext, ?string $iv = null, int $algId = Constant::SGD_SM4_ECB): string
     {
-        $url = sprintf("http://%s/api-console/crypt/v1/decrypt-with-padding", $this->host);
+        $url = sprintf("%s/api-console/crypt/v1/decrypt-with-padding", $this->host);
         $params = [
             "sessionKeyContext" => $sessionKeyContext,
             "algId" => $algId,
@@ -135,7 +135,7 @@ class ClientV1
      */
     public function hmac(string $inData, array $sessionKeyContext, int $algId = Constant::SGD_SM3): string
     {
-        $url = sprintf("http://%s/api-console/crypt/v1/hmac", $this->host);
+        $url = sprintf("%s/api-console/crypt/v1/hmac", $this->host);
         $params = [
             "sessionKeyContext" => $sessionKeyContext,
             "algId" => $algId,
